@@ -1,0 +1,96 @@
+% Created 2019-04-16 ter 14:45
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{Rafael Campos Nunes}
+\date{\today}
+\title{A web scrapper case}
+\hypersetup{
+ pdfauthor={Rafael Campos Nunes},
+ pdftitle={A web scrapper case},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Requirements}
+\label{sec:org0c31e00}
+
+
+The objective of the web scrapper is to list every product with the following
+characteristics encoded as a JSON:
+
+\begin{enumerate}
+\item Name of the product
+\item Link to one or more of its images
+\item Price of the product
+\end{enumerate}
+
+The page from which all of this information will be scrapped is:
+\url{https://nerdstore.com.br/categoria/especiais/game-of-throne/s}
+
+\section{Inspection}
+\label{sec:org0f548ea}
+
+When inspecting the page I found that the elements are enclosed in the following
+structure:
+
+\begin{minted}[frame=lines,linenos=true]{html}
+<ul class="products ...">
+  <li class="... product ...">
+    <a class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+      <img class="" src="">
+      <img class="" src="">
+      <h2 class="woocommerce-loop-product__title">
+        <span class="ellip">text ellipsed?</span>
+        <span class="ellip-line">text ellipsed 2?</span>
+      </h2>
+      <span class="price">
+        <span class="woocommerce-Price-amount amount">
+          <span class="woocommerce-Price-currencySymbol">R$</span>
+          "49,90"
+        </span>
+      </span>
+    </a>
+  </li>
+  ...
+</ul>
+\end{minted}
+
+By inspection I see that a product may or may not have more than one image and
+that are specific classes to grab the specified element, though this shouldn't
+be enough I think because they (the developers) might change on the long run. I
+should return a JSON that looks somewhat like this:
+
+\begin{minted}[frame=lines,linenos=true]{javascript}
+o = {
+  'name'  : '',
+  'img'   : ['', ..., ''],
+  'price' : '44,90'
+}
+\end{minted}
+
+The price comes with a currency tag and that should be important to have but
+it's not asked by the head hunters.
+
+What I should do now is to take the big block of products that are contained
+inside the \(ul\) tag with the \(products\) class and work from there.
+\end{document}
