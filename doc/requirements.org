@@ -3,7 +3,6 @@
 
 * Requirements
 
-
 The objective of the web scrapper is to list every product with the following
 characteristics encoded as a JSON:
 
@@ -23,8 +22,8 @@ structure:
 <ul class="products ...">
   <li class="... product ...">
     <a class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-      <img class="" src="">
-      <img class="" src="">
+      <img class="attachment-woocommerce_thumbnail ..." src="">
+      <img class="attachment-woocommerce_thumbnail ..." src="">
       <h2 class="woocommerce-loop-product__title">
         <span class="ellip">text ellipsed?</span>
         <span class="ellip-line">text ellipsed 2?</span>
@@ -55,7 +54,54 @@ o = {
 #+END_SRC
 
 The price comes with a currency tag and that should be important to have but
-it's not asked by the head hunters.
+it's not asked by the head hunters. What I should do now is to take the big
+block of products that are contained inside the $ul$ tag with the $products$
+class and work from there.
 
-What I should do now is to take the big block of products that are contained
-inside the $ul$ tag with the $products$ class and work from there.
+* Solution
+
+This section of the document explains a thing in chronological order and if
+something doesn't make sense when you read it might make sense after a few
+paragraphs. It is just how my mind went when solving this problem. I hope
+that you, reader, to comprehend that.
+
+Well, I'll be working with scrapy and django. First I will write the scrapper
+because I think that's the most important thing to do and then I write the
+interface to access all of the things.
+
+Scrapy is quite a handy tool, I could use to scrapy the page with a shell that
+they created. Using expressions such as the following I can pick every image
+that is inside a product item.
+
+: response.css('img.attachment-woocommerce_thumbnail::attr(src)').getall()
+
+These expressions below makes the job complete without much work:
+
+: response.css('h2.woocommerce-loop-product__title::text').get
+: response.css('span.price > span::text, span.woocommerce-Price-currencySymbol')
+
+Now that I have everything I might as well implement it right? mm, not yet. The
+images should be returned in an array because there might be more than one image
+per product. I think that this could work:
+
+: response.css('li.product > img.attachment-woocommerce_thumbnail::attr(src)').getall()
+
+Lets proceed to that then. I there where more pages there's a bit more of work
+that I should do but anyway, this will suffice. Some time later I got it
+working, I had to modify the expressions a bit but the scrapper is returning
+very good results, still not perfect quite yet. I still need to scrap over all
+the images inside a product item and the price isn't being returned with the
+currency symbol.
+
+The second image on a product has different class names, how dull I was to think
+it was the same not even looking for it, I will have to add a simple thing and
+it will work.
+
+: response.css('img.secondary-image:attr(src)').getall()'
+
+I guess it should be more easy to select every image inside it with xpath
+instead. Lets do it now. No success after quite a while trying, as it is
+ready I will proceed to other parts of the task as requested and then I
+comeback if I have time.
+
+The next step is to integrate this with Django.
