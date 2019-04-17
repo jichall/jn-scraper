@@ -11,8 +11,8 @@
 
 BOT_NAME = 'jn_scrapper'
 
-SPIDER_MODULES = ['jn_scrapper.spiders']
-NEWSPIDER_MODULE = 'jn_scrapper.spiders'
+SPIDER_MODULES = ['scrapper.spiders']
+NEWSPIDER_MODULE = 'scrapper.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
