@@ -13,5 +13,4 @@ class ProductsSpider(scrapy.Spider):
                 'title': product.css('h2.woocommerce-loop-product__title::text').get(),
                 'img': product.xpath('.//img/@src').getall(),
                 'price': product.css('span.price > span::text').get()
-
             }
