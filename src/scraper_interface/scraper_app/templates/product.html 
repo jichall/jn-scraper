@@ -1,0 +1,36 @@
+<style>
+  .content {
+      display: flexbox;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .header {
+      margin-bottom: 5px;
+  }
+
+  .images {}
+
+  .price {
+      color: rgb(130, 130, 130);
+  }
+
+  .product {
+      margin-bottom: 30px;
+  }
+</style>
+
+<div class="content">
+  <li class="">
+    <div class="header">
+      {{ product.name }} <span class="price">R${{ product.price }}</span>
+    </div>
+    <div class="images">
+      <ul>
+        {% for images in product.image_set.all %}
+        <li>{{ images.src }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+</div>
