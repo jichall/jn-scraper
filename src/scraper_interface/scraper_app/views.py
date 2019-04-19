@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 
-from .models import *
+from .models import ProductItem
 
 def index(request):
     """Returns the front page"""
@@ -18,5 +18,11 @@ def products(request):
 
 def product(request, product_id):
     """Returns a single product"""
-    name = "<b>%s</b>" % product_id
-    return HttpResponse(name)
+    try:
+        item = ProductItem.objects.get(pk=request.GET['id'])
+    except(KeyError):
+        # TODO: Improve error handling over this piece of code
+        return HttpResponse('There\'s no such product in the database')
+    else:
+        context = {'products': item}
+        return render(request, 'product.html', context)
