@@ -16,3 +16,5 @@ NEWSPIDER_MODULE = 'scraper.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+
+ITEM_PIPELINES = {'scraper.pipelines.ProductItemPipeline': 200}
