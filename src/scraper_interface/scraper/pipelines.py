@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class JnScrapperPipeline(object):
+class ScraperPipeline(object):
     def process_item(self, item, spider):
+        # item.save()
         return item
