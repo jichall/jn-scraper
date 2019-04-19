@@ -10,3 +10,6 @@ shell:
 migrate:
 	$(CC) src/scraper_interface/manage.py makemigrations
 	$(CC) src/scraper_interface/manage.py migrate 
+
+dep:
+	pip install -r requirements.txt
