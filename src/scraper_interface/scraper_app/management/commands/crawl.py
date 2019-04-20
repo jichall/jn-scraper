@@ -1,8 +1,11 @@
-from django.core.management.base import BaseCommand
+from sys import path
 
-from scraper.spiders import ProductSpider
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+from django.core.management.base import BaseCommand
+
+path.append('../../../scraper/spiders/')
+from scraper.spiders import products_spider
 
 
 class Command(BaseCommand):
@@ -11,5 +14,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         process = CrawlerProcess(get_project_settings())
 
-        process.crawl(ProductSpider)
+        process.crawl(products_spider.ProductsSpider)
         process.start()
