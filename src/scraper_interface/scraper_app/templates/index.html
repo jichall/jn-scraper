@@ -41,9 +41,21 @@
 
   <h2>Buscar produtos</h2>
 
-  <form action="/product/" method="GET">
+  <form id="form">
     <label>ID do produto: </label>
     <input type="number" name="id" required><br><br>
     <input type="submit" value="Go">
   </form>
 </div>
+
+<script type="text/javascript">
+
+  let f = document.getElementById('form')
+  f.addEventListener('submit', (ev) => {
+      ev.preventDefault()
+
+      var v = document.getElementsByName('id')[0]
+      window.location.replace("/product/"+v.value)
+  })
+
+</script>

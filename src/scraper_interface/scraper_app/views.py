@@ -19,8 +19,8 @@ def products(request):
 def product(request, product_id):
     """Returns a single product"""
     try:
-        item = ProductItem.objects.get(pk=request.GET['id'])
-    except(KeyError):
+        item = ProductItem.objects.get(pk=product_id)
+    except(Exception):
         # TODO: Improve error handling over this piece of code
         return HttpResponse('There\'s no such product in the database')
     else:
