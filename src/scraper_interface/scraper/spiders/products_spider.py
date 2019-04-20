@@ -18,7 +18,6 @@ class ProductsSpider(scrapy.Spider):
         # fill repeated data into the database
         ProductItem.objects.all().delete()
 
-
         for product in response.css('li.product'):
             p = Product()
             i = Image()
@@ -27,8 +26,8 @@ class ProductsSpider(scrapy.Spider):
             p['name'] = product.css('h2.woocommerce-loop-product__title::text').get()
             p['price'] = product.css('span.price > span::text').get()
 
-            images = product.xpath('.//img/@src').getall()
             """
+            images = product.xpath('.//img/@src').getall()
             for image in images:
                 pi = p.objects.get(name=p['name'])
                 i['item'] = pi
