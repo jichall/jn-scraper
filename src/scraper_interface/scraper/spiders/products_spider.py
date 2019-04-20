@@ -28,10 +28,12 @@ class ProductsSpider(scrapy.Spider):
             p['price'] = product.css('span.price > span::text').get()
 
             images = product.xpath('.//img/@src').getall()
+            """
             for image in images:
                 pi = p.objects.get(name=p['name'])
                 i['item'] = pi
                 i['src'] = image
+            """
 
             yield p
             """
