@@ -1,3 +1,24 @@
+#+LANGUAGE: pt-br
+
+#+LATEX_CLASS_OPTIONS: [a4paper, 12pt]
+
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{url}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{tkz-graph}
+#+LATEX_HEADER: \usepackage{libertine}
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[portuguese]{babel}
+#+LATEX_HEADER: \usepackage[left=3cm,bottom=3cm,top=2cm,right=2cm]{geometry}
+
+#+EXCLUDE_TAGS: TOC_3
+
+#+OPTIONS: todo:nil tasks:("IN-PROGRESS" "DONE") tags:nil
+#+OPTIONS: toc:nil
+
 #+TITLE: A web scrapper case
 #+AUTHOR: Rafael Campos Nunes
 
@@ -104,4 +125,23 @@ instead. Lets do it now. No success after quite a while trying, as it is
 ready I will proceed to other parts of the task as requested and then I
 comeback if I have time.
 
-The next step is to integrate this with Django.
+The next step is to integrate this with Django. Well, I kind of fixed the
+problem of getting the images, kudos for me! The structure of the scrapper
+was also changed and it's noted on the $6a338c$ commit.
+
+Right, I kind of did the integration but is quite clumsy. I don't like the way
+this stuff is integrated, the scraper code is not fully integrated and it looks
+more like a glue than an integration. A way I would do this integration is to
+pipe the applications (just like unix tools), the json output of the scraper
+would be used by another application to fill the database and Django would be
+only responsible for displaying the information.
+
+* Hard time
+
+As I didn't have a proficiency on the frameworks used on this challenge I was
+quite slow to implement everything. I ended up with a application which looks
+like a duck with eyes of a cat and legs of a dog, a chimera.
+
+I also was unable to detail a bit more of the development as I had to full fill
+other objectives of the challenge. I didn't see that I need to write a README
+and I was writing this already.
