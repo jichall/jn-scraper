@@ -63,10 +63,6 @@ input[type="submit"] {
     width: 30%;
 }
 
-.price {
-    color: rgb(130, 130, 130);
-}
-
 .mark {
     color: rgba(130, 130, 130, .3);
 }
@@ -101,7 +97,44 @@ input[type="submit"] {
 }
 
 .product {
+    width: 100%;
+    cursor: default;
     margin-bottom: 30px;
+    background: rgb(230, 230, 230);
+    border-radius: 3px;
+}
+
+.product > .header {
+    font-size: 20px;
+}
+
+.product > .footer {
+    padding: 1%;
+    text-align: right;
+    font-weight: bold;
+    color: rgb(250, 250, 250);
+    background: rgb(30, 30, 30);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+    text-align: left;
+}
+
+.images > ul {
+    flex-direction: row;
+}
+
+.images > ul > li {
+    margin: 5px;
+}
+
+.images > ul > li > img {
+    border-radius: 3px;
 }
 
 .alert {

@@ -3,19 +3,22 @@
 
 <h1>Produtos extraídos</h1>
 
-<ul>
+<ul class="wrapper">
   {% for product in products %}
   <li class="product fade-in">
     <div class="header">
-      <a href="/product/{{product.id}}" class="mark animate">#{{product.id}}</a> {{ product.name }}
-      <span class="price">R${{ product.price }}</span>
+      <a href="/product/{{product.id}}" class="mark animate">#{{product.id}}</a>
+      <b>{{ product.name }}</b>
     </div>
     <div class="images">
       <ul>
-      {% for images in product.image_set.all %}
-      <li>{{ images.src }}</li>
+      {% for image in product.image_set.all %}
+      <li><img src="{{ image.src }}" width="128" height="128"></li>
       {% endfor %}
       </ul>
+    </div>
+    <div class="footer">
+      <span>R${{ product.price }}</span>
     </div>
   </li>
   {% endfor %}
