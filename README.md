@@ -6,6 +6,18 @@ detalhada pode ser vista em **doc/requirements.pdf**, acabei fazendo uma
 documentação enquanto estava desenvolvendo a aplicação e não vi que existia um
 requisito para escrever um README.md.
 
+# Instruções
+
+Para servir as páginas ao cliente é preciso construir o banco de dados (sqlite)
+com o comando `make migrate` e depois fazer o processo de extração de
+informações, após esse segundo passo basta iniciar o servidor com `make serve`.
+
+tl;dr:
+
+1. `make migrate`
+2. `python src/scraper_interface/manage.py crawl`
+3. `make serve`
+
 # Implementação
 
 A implementação se dividiu em etapas pois eu não tinha conhecimento de quais
@@ -144,18 +156,6 @@ entretanto, de escolher a melhor imagem docker e construí a imagem do
 construí-la com `make docker` e utilizar a instrução `docker run` para iniciar
 a imagem em modo interativo.
 
-# Instruções
-
-Para servir as páginas ao cliente é preciso construir o banco de dados (sqlite)
-com o comando `make migrate` e depois fazer o processo de extração de
-informações, após esse segundo passo basta iniciar o servidor com `make serve`.
-
-tl;dr:
-
-1. `make migrate`
-2. `python src/scraper_interface/manage.py crawl`
-3. `make serve`
-
 # Dificuldades
 
 A maior dificuldade foi a não familiaridade com o ambiente Django, o qual tem
@@ -167,6 +167,10 @@ código, o problema dos módulos estarem em diferentes diretórios dificultou a
 inclusão e tive de circunscrever este problema adicionando ao caminho de
 importação o diretório que continha o módulo desejado.
 
+As regras no arquivo Makefile estão complexas e algumas devem ser revistas para
+facilitar a execução do código do projeto e essa revisão também tomou um tempo
+considerável já que alguns bugs, como o da regra `all`, não fazem muito sentido
+a um olhar superficial.
 
 # Referências
 
