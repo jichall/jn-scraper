@@ -3,8 +3,10 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
+from django.core import serializers
 
 from .models import ProductItem
+
 
 def index(request):
     """Returns the front page"""
@@ -28,3 +30,18 @@ def product(request, product_id):
     else:
         context = {'product': item}
         return render(request, 'product.html', context)
+
+
+def json(request):
+    products = ProductItem.objects.all()
+    objects = []
+
+    for product in products:
+        product_dict = {}
+        product_dict['title'] = product.name
+        product_dict['img(s)'] = [str(img) for img in product.image_set.all()]
+        product_dict['price'] = product.price
+        objects.append(product_dict)
+
+    context = {'objects': objects}
+    return render(request, 'json.html', context)
