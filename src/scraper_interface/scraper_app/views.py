@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
@@ -21,8 +23,8 @@ def product(request, product_id):
     try:
         item = ProductItem.objects.get(pk=product_id)
     except(Exception):
-        # TODO: Improve error handling over this piece of code
-        return HttpResponse('There\'s no such product in the database')
+        context = {'error': 'O item ' + str(product_id) + ' não foi encontrado.'}
+        return render(request, 'index.html', context)
     else:
-        context = {'products': item}
+        context = {'product': item}
         return render(request, 'product.html', context)
