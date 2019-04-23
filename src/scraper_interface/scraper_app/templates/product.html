@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'theme.css' %}">
+
+<div class="content">
+  <ul>
+    <li>
+      <div class="header">
+        {{ product.name }} <span class="price">R${{ product.price }}</span>
+      </div>
+      <div class="images">
+        <ul>
+          {% for images in product.image_set.all %}
+          <li>{{ images.src }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <a href="/" class="button button-outline animate">Voltar</a>
+</div>

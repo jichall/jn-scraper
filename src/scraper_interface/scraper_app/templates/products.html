@@ -5,9 +5,10 @@
 
 <ul>
   {% for product in products %}
-  <li class="product">
+  <li class="product fade-in">
     <div class="header">
-      {{ product.name }} <span class="price">R${{ product.price }}</span>
+      <a href="/product/{{product.id}}" class="mark animate">#{{product.id}}</a> {{ product.name }}
+      <span class="price">R${{ product.price }}</span>
     </div>
     <div class="images">
       <ul>
@@ -20,4 +21,4 @@
   {% endfor %}
 </ul>
 
-<a href="/">Voltar</a>
+<a href="/" class="button button-outline animate">Voltar</a>

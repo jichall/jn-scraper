@@ -1,16 +1,25 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'theme.css' %}">
 
-<div class="">
-  <a href="/products" class="button">Visualizar todos os produtos</a><br><br>
+<div class="wrapper fade-in">
+  <a href="/products" class="button button-outline animate">Visualizar todos os produtos</a><br><br>
+  <hr class="hdiv">
 
   <h2>Buscar produtos</h2>
 
+  <p style="text-align: justify;">
+    Para realizar a pesquisa utilize o campo de pesquisa abaixo inserindo o ID do produto,
+    este ID está disponível na página de todos os produtos.
+  </p>
+
   <form id="form">
-    <label>ID do produto: </label>
-    <input type="number" name="id" required><br><br>
-    <input type="submit" value="Go">
+    <input type="number" name="id" autocomplete="off" class="animate" required><br><br>
+    <input type="submit" value="Buscar" class="button button-default"><br><br>
   </form>
+
+  {% if error %}
+  <p class="alert alert-danger">{{ error }}</p>
+  {% endif %}
 </div>
 
 <script type="text/javascript">
