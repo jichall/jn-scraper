@@ -131,9 +131,10 @@ extraídas.
 Após a implementação da API um bug estava ocorrendo ao utilizar o `make`
 pois não parecia que a primeira instrução definida na regra `all` se realizava
 dado que quando eu tentava visualizar todos os produtos que foram extraídos a
-página não retornava nada. Ao fazer cada comando por vez é possível ver que a
-página retorna corretamente os dados, ainda não compreendi o porquê no entanto.
-Pode ser algo relacionado com cache (?).
+página não retornava nada. Ao fazer cada comando por vez, executando o _crawler_
+e depois iniciando o servidor é possível ver que a página retorna corretamente
+os dados, ainda não compreendi o porquê no entanto.Pode ser algo relacionado com
+cache (?).
 
 Após a criação dessas regras e para fazer a aplicação um pouco mais fácil de ser
 executada em outras máquinas decidi criar um container docker, testando dessa
@@ -142,7 +143,6 @@ entretanto, de escolher a melhor imagem docker e construí a imagem do
 `jn-scraper` com base na imagem do Ubuntu 18.04. Para executar a imagem basta
 construí-la com `make docker` e utilizar a instrução `docker run` para iniciar
 a imagem em modo interativo.
-
 
 # Dificuldades
 
@@ -154,6 +154,7 @@ Além desta também houve a dificuldade de integração entre as duas bases de
 código, o problema dos módulos estarem em diferentes diretórios dificultou a
 inclusão e tive de circunscrever este problema adicionando ao caminho de
 importação o diretório que continha o módulo desejado.
+
 
 # Referências
 
