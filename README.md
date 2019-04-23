@@ -99,11 +99,14 @@ for product in response.css('li.product'):
                 i['src'] = image
 
             yield p
-```
 
-O código entretanto não consegue fazer a atribuição das imagens extraídas pois o
-objeto ao qual elas pertencem não está persistido, sendo impossível fazer a
-busca deste.
+            for p in ProductItem.objects.all():
+                for img in images[p.name]:
+                    i = Image()
+                    i['item'] = p
+                    i['src'] = img
+                    yield i
+```
 
 A segunda etapa se concretizou pela implementação da interface de acesso aos
 dados extraídos, servindo uma página para fácil acesso das informações. As
@@ -123,6 +126,22 @@ extraídas.
 
 1. `/products` que retorna todos os produtos extraídos
 2. `/products/<id>` que retorna somente um produto dado o seu ID no banco de dados
+3. `/json` que retorna todos os produtos extraídos no formato JSON
+
+Após a implementação da API um bug estava ocorrendo ao utilizar o `make`
+pois não parecia que a primeira instrução definida na regra `all` se realizava
+dado que quando eu tentava visualizar todos os produtos que foram extraídos a
+página não retornava nada. Ao fazer cada comando por vez é possível ver que a
+página retorna corretamente os dados, ainda não compreendi o porquê no entanto.
+Pode ser algo relacionado com cache (?).
+
+Após a criação dessas regras e para fazer a aplicação um pouco mais fácil de ser
+executada em outras máquinas decidi criar um container docker, testando dessa
+forma a aplicação em um ambiente externo à máquina local. Não tive tempo,
+entretanto, de escolher a melhor imagem docker e construí a imagem do
+`jn-scraper` com base na imagem do Ubuntu 18.04. Para executar a imagem basta
+construí-la com `make docker` e utilizar a instrução `docker run` para iniciar
+a imagem em modo interativo.
 
 
 # Dificuldades
