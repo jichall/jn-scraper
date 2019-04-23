@@ -6,6 +6,8 @@ from scraper.items import Product, Image
 
 path.append('../../scraper_app/')
 from scraper_app.models import ProductItem
+from scraper_app.models import Image as ImageItem
+
 
 class ProductsSpider(scrapy.Spider):
     name = "products"
@@ -17,31 +19,26 @@ class ProductsSpider(scrapy.Spider):
         # Delete all the objects before parsing the page because I don't want to
         # fill repeated data into the database
         ProductItem.objects.all().delete()
+        ImageItem.objects.all().delete()
+        # Dictionary containing all the images related to a specific product
+        images = {}
 
         for product in response.css('li.product'):
             p = Product()
-            i = Image()
 
             # The title is not encoded in UTF-8.
             p['name'] = product.css('h2.woocommerce-loop-product__title::text').get()
             p['price'] = product.css('span.price > span::text').get()
-
-            """
-            images = product.xpath('.//img/@src').getall()
-            for image in images:
-                pi = p.objects.get(name=p['name'])
-                i['item'] = pi
-                i['src'] = image
-            """
+            images[p['name']] = product.xpath('.//img/@src').getall()
 
             yield p
-            """
-            FIXME: To add a image the p must be an instance of ProductItem. But
-            it is actually more complex than that. I have to have the p object
-            already saved on the database to retrieve it because the
-            p.django_model isn't the instance that it needs.
-            """
-            #yield i
+
+        for p in ProductItem.objects.all():
+            for img in images[p.name]:
+                i = Image()
+                i['item'] = p
+                i['src'] = img
+                yield i
 
 
     """
