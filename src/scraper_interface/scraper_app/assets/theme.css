@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+a {
+    padding: 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: rgb(30, 30, 30);
+    border: 1px solid rgb(210, 210, 210);
+    background: rgb(240, 240, 240);
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+li {
+    list-style: none;
+}
+
+form {
+    text-align: right;
+}
+
+input {
+    border-radius: 3px;
+}
+
+input[type="number"] {
+    outline: 0;
+    padding: 5px;
+    border: 1px solid rgb(210, 210, 210);
+}
+
+input[type="submit"] {
+    padding  : 10px;
+    border: 1px solid rgb(210, 210, 210);
+    background: rgb(240, 240, 240);
+}
+
+a:hover, input[type="submit"]:hover {
+    background: linear-gradient(180deg, rgb(240, 240, 240), rgb(230, 230, 230));
+}
+
+.images {}
+
+.price {
+    color: rgb(130, 130, 130);
+}
+
+.product {
+    margin-bottom: 30px;
+}

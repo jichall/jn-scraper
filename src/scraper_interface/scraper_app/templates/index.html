@@ -1,40 +1,5 @@
-<style>
-  body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-  }
-
-  a {
-      padding: 10px;
-      text-decoration: none;
-      color: rgb(30, 30, 30);
-      border: 1px solid rgb(210, 210, 210);
-      background: rgb(240, 240, 240);
-  }
-
-  form {
-      text-align: right;
-  }
-
-  input[type="number"] {
-      outline: 0;
-      padding: 5px;
-      border: 1px solid rgb(210, 210, 210);
-  }
-
-  input[type="submit"] {
-      padding  : 10px;
-      border: 1px solid rgb(210, 210, 210);
-      background: rgb(240, 240, 240);
-  }
-
-  a:hover, input[type="submit"]:hover {
-      background: linear-gradient(180deg, rgb(240, 240, 240), rgb(230, 230, 230));
-  }
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'theme.css' %}">
 
 <div class="">
   <a href="/products" class="button">Visualizar todos os produtos</a><br><br>
@@ -49,7 +14,6 @@
 </div>
 
 <script type="text/javascript">
-
   let f = document.getElementById('form')
   f.addEventListener('submit', (ev) => {
       ev.preventDefault()
@@ -57,5 +21,4 @@
       var v = document.getElementsByName('id')[0]
       window.location.replace("/product/"+v.value)
   })
-
 </script>

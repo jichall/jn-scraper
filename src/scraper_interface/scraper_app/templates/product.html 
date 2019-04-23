@@ -1,24 +1,5 @@
-<style>
-  .content {
-      display: flexbox;
-      justify-content: center;
-      align-items: center;
-  }
-
-  .header {
-      margin-bottom: 5px;
-  }
-
-  .images {}
-
-  .price {
-      color: rgb(130, 130, 130);
-  }
-
-  .product {
-      margin-bottom: 30px;
-  }
-</style>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'theme.css' %}">
 
 <div class="content">
   <li class="">

@@ -1,42 +1,5 @@
-<style>
-  body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-  }
-
-  a {
-      padding: 10px;
-      text-decoration: none;
-      color: rgb(30, 30, 30);
-      border: 1px solid rgb(210, 210, 210);
-      background: rgb(240, 240, 240);
-  }
-
-  a:hover {
-      background: linear-gradient(180deg, rgb(240, 240, 240), rgb(230, 230, 230));
-  }
-
-  li {
-      list-style: none;
-  }
-
-  .header {
-      margin-bottom: 5px;
-  }
-
-  .images {}
-
-  .price {
-      color: rgb(130, 130, 130);
-  }
-
-  .product {
-      margin-bottom: 30px;
-  }
-</style>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'theme.css' %}">
 
 <h1>Produtos extraídos</h1>
 
