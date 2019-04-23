@@ -144,6 +144,18 @@ entretanto, de escolher a melhor imagem docker e construí a imagem do
 construí-la com `make docker` e utilizar a instrução `docker run` para iniciar
 a imagem em modo interativo.
 
+# Instruções
+
+Para servir as páginas ao cliente é preciso construir o banco de dados (sqlite)
+com o comando `make migrate` e depois fazer o processo de extração de
+informações, após esse segundo passo basta iniciar o servidor com `make serve`.
+
+tl;dr:
+
+1. `make migrate`
+2. `python src/scraper_interface/manage.py crawl`
+3. `make serve`
+
 # Dificuldades
 
 A maior dificuldade foi a não familiaridade com o ambiente Django, o qual tem
